@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="QuadcopterSystemTest" time="0.093" tests="14" errors="11" skipped="0" failures="1">
+  <properties>
+    <property name="java.specification.version" value="23"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\Ayan\Desktop\FMS\VDM\maven\quadcopter\target\test-classes;C:\Users\Ayan\Desktop\FMS\VDM\maven\quadcopter\target\classes;C:\Users\Ayan\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.0\junit-jupiter-engine-5.9.0.jar;C:\Users\Ayan\.m2\repository\org\junit\platform\junit-platform-engine\1.9.0\junit-platform-engine-1.9.0.jar;C:\Users\Ayan\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Ayan\.m2\repository\org\junit\platform\junit-platform-commons\1.9.0\junit-platform-commons-1.9.0.jar;C:\Users\Ayan\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.0\junit-jupiter-api-5.9.0.jar;C:\Users\Ayan\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Asia/Karachi"/>
+    <property name="user.country.format" value="PK"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="23"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
+    <property name="sun.java.command" value="C:\Users\Ayan\AppData\Local\Temp\surefire17634689436019209116\surefirebooter11068314206452084838.jar C:\Users\Ayan\AppData\Local\Temp\surefire17634689436019209116 2024-11-23T23-57-30_709-jvmRun1 surefire5922969486105426063tmp surefire_06379668649768751998tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\Ayan\Desktop\FMS\VDM\maven\quadcopter\target\test-classes;C:\Users\Ayan\Desktop\FMS\VDM\maven\quadcopter\target\classes;C:\Users\Ayan\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.0\junit-jupiter-engine-5.9.0.jar;C:\Users\Ayan\.m2\repository\org\junit\platform\junit-platform-engine\1.9.0\junit-platform-engine-1.9.0.jar;C:\Users\Ayan\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Ayan\.m2\repository\org\junit\platform\junit-platform-commons\1.9.0\junit-platform-commons-1.9.0.jar;C:\Users\Ayan\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.0\junit-jupiter-api-5.9.0.jar;C:\Users\Ayan\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\Ayan"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2024-10-15"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-23"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\Ayan\Desktop\FMS\VDM\maven\quadcopter"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\Ayan\AppData\Local\Temp\surefire17634689436019209116\surefirebooter11068314206452084838.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="23.0.1+11-39"/>
+    <property name="user.name" value="Ayan"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\Ayan\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\Ayan\AppData\Local\Temp\"/>
+    <property name="java.version" value="23.0.1"/>
+    <property name="user.dir" value="C:\Users\Ayan\Desktop\FMS\VDM\maven\quadcopter"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-23\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Users\Ayan\AppData\Local\Programs\Python\Python312\;C:\Users\Ayan\AppData\Local\Programs\Python\Python312\Scripts\;C:\ffmpeg\bin;C:\Program Files\Git\cmd;C:\msys64\mingw64\bin;C:\msys64\mingw32\bin;D:\nodejs\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Java\jdk-23;C:\apache-maven-3.9.9\bin;;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Ayan\AppData\Local\Microsoft\WindowsApps;C:\Users\Ayan\.dotnet\tools;D:\Microsoft VS Code\bin;C:\Users\Ayan\AppData\Roaming\npm;C:\Program Files\mongosh\;C:\Program Files\Java\jdk-23;;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="23.0.1+11-39"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="67.0"/>
+  </properties>
+  <testcase name="testBatteryLowWarning" classname="QuadcopterSystemTest" time="0.043">
+    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testBatteryLowWarning(test.java:71)
+</error>
+  </testcase>
+  <testcase name="testSignalLost" classname="QuadcopterSystemTest" time="0">
+    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testSignalLost(test.java:149)
+</error>
+  </testcase>
+  <testcase name="testSetRPMOutOfRange" classname="QuadcopterSystemTest" time="0.001">
+    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testSetRPMOutOfRange(test.java:55)
+</error>
+  </testcase>
+  <testcase name="testSetAllRPMsOutOfRange" classname="QuadcopterSystemTest" time="0.002">
+    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testSetAllRPMsOutOfRange(test.java:63)
+</error>
+  </testcase>
+  <testcase name="testBaseMovement" classname="QuadcopterSystemTest" time="0.001">
+    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testBaseMovement(test.java:119)
+</error>
+  </testcase>
+  <testcase name="testNegativeTelemetryValues" classname="QuadcopterSystemTest" time="0.001">
+    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testNegativeTelemetryValues(test.java:91)
+</error>
+  </testcase>
+  <testcase name="testInitializeSystemAtAltitude" classname="QuadcopterSystemTest" time="0.005"/>
+  <testcase name="testInitializeSystem" classname="QuadcopterSystemTest" time="0.006">
+    <failure message="Unexpected exception thrown: java.lang.IllegalStateException: System not started" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Unexpected exception thrown: java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testInitializeSystem(test.java:22)
+Caused by: java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.lambda$testInitializeSystem$0(test.java:22)
+	at QuadcopterSystemTest.testInitializeSystem(test.java:22)
+</failure>
+  </testcase>
+  <testcase name="testOutOfRangeWarning" classname="QuadcopterSystemTest" time="0.002">
+    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testOutOfRangeWarning(test.java:81)
+</error>
+  </testcase>
+  <testcase name="testInitializeSystemAtLowBattery" classname="QuadcopterSystemTest" time="0.001"/>
+  <testcase name="testThrottleControl" classname="QuadcopterSystemTest" time="0.001">
+    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testThrottleControl(test.java:104)
+</error>
+  </testcase>
+  <testcase name="testBatteryDead" classname="QuadcopterSystemTest" time="0.002">
+    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testBatteryDead(test.java:163)
+</error>
+  </testcase>
+  <testcase name="testYawControl" classname="QuadcopterSystemTest" time="0">
+    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testYawControl(test.java:134)
+</error>
+  </testcase>
+  <testcase name="testInitializeSystemAlreadyStarted" classname="QuadcopterSystemTest" time="0.002">
+    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testInitializeSystemAlreadyStarted(test.java:31)
+</error>
+  </testcase>
+</testsuite>

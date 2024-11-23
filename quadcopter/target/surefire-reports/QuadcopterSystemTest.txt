@@ -1,0 +1,55 @@
+-------------------------------------------------------------------------------
+Test set: QuadcopterSystemTest
+-------------------------------------------------------------------------------
+Tests run: 14, Failures: 1, Errors: 11, Skipped: 0, Time elapsed: 0.093 s <<< FAILURE! - in QuadcopterSystemTest
+testBatteryLowWarning  Time elapsed: 0.043 s  <<< ERROR!
+java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testBatteryLowWarning(test.java:71)
+
+testSignalLost  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testSignalLost(test.java:149)
+
+testSetRPMOutOfRange  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testSetRPMOutOfRange(test.java:55)
+
+testSetAllRPMsOutOfRange  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testSetAllRPMsOutOfRange(test.java:63)
+
+testBaseMovement  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testBaseMovement(test.java:119)
+
+testNegativeTelemetryValues  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testNegativeTelemetryValues(test.java:91)
+
+testInitializeSystem  Time elapsed: 0.006 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception thrown: java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testInitializeSystem(test.java:22)
+Caused by: java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.lambda$testInitializeSystem$0(test.java:22)
+	at QuadcopterSystemTest.testInitializeSystem(test.java:22)
+
+testOutOfRangeWarning  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testOutOfRangeWarning(test.java:81)
+
+testThrottleControl  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testThrottleControl(test.java:104)
+
+testBatteryDead  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testBatteryDead(test.java:163)
+
+testYawControl  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testYawControl(test.java:134)
+
+testInitializeSystemAlreadyStarted  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.IllegalStateException: System not started
+	at QuadcopterSystemTest.testInitializeSystemAlreadyStarted(test.java:31)
+

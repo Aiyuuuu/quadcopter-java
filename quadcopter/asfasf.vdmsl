@@ -1,0 +1,76 @@
+types
+  AccessStatus = <ACCESS_GRANTED> | <ACCESS_DENIED>;
+  UserID = seq of char; 
+  AccessLevel = nat; -- Non-negative integer for access level
+  AccessLog = UserID * AccessStatus;
+  
+  -- Changed AccessLogs to a map with UserID as the key and AccessStatus as the value
+  AccessLogs = map UserID to AccessStatus;
+
+state VaultController of
+  authorizedPersonnel: map UserID to AccessLevel
+  accessAttempts: AccessLogs
+  vaultStatus: bool -- True if open, false if closed
+  alarmTriggered: bool -- True if alarm is active
+inv mk_VaultController(ap, aa, vs, at) == 
+  -- Check if there exists an access attempt with ACCESS_DENIED in the map
+  at => exists user in set dom aa & aa(user) = <ACCESS_DENIED>
+
+init p == p = mk_VaultController(
+  {|->},
+  {|->},
+  false,
+  false
+)
+
+end
+
+operations
+
+  shouldTriggerAlarm: UserID ==> bool
+  shouldTriggerAlarm(userID) == 
+    return not userID in set dom authorizedPersonnel;
+
+  addAuthorizedPersonnel: UserID * AccessLevel ==> ()
+  addAuthorizedPersonnel(userID, level) == 
+    authorizedPersonnel := authorizedPersonnel munion {userID |-> level}
+  pre
+    not userID in set dom authorizedPersonnel;
+
+removeAuthorizedPersonnel: UserID ==> ()
+removeAuthorizedPersonnel(userID) ==
+  authorizedPersonnel := {id |-> authorizedPersonnel(id) | id in set dom authorizedPersonnel & id <> userID}
+pre
+  userID in set dom authorizedPersonnel;
+
+
+
+  attemptAccess: UserID ==> AccessStatus
+  attemptAccess(userID) == 
+    (dcl signalOut: AccessStatus;
+     signalOut := if userID in set dom authorizedPersonnel
+                  then <ACCESS_GRANTED>
+                  else <ACCESS_DENIED>;
+     -- Now using a map for accessAttempts
+     accessAttempts := accessAttempts munion {userID |-> signalOut};
+     alarmTriggered := alarmTriggered or (signalOut = <ACCESS_DENIED>);
+     return signalOut)
+  pre
+    vaultStatus = true;
+
+  lockVault: () ==> ()
+  lockVault() == 
+    vaultStatus := false
+  pre
+    vaultStatus = true;
+
+  unlockVault: () ==> ()
+  unlockVault() == 
+    vaultStatus := true
+  pre
+    vaultStatus = false;
+
+  getAccessLogs: () ==> AccessLogs
+  getAccessLogs() == 
+    return accessAttempts;
+
