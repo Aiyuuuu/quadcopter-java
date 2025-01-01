@@ -1,0 +1,264 @@
+types
+  MovementJoystickDirectionType = <FORWARD> | <BACKWARD> | <LEFT> | <RIGHT> | <NEUTRAL>;
+  Signal = <CONTROLSIGNAL> | <VIDEOSIGNAL> | <TELEMETRYSIGNAL>;
+values
+  MIN_SAFE_BATTERY_PERCENTAGE : real = 10.0;
+  MAX_SAFE_DISTANCE : nat = 2000;
+  MIN_BATTERY_VOLTAGE : real = 9.0;
+  MAX_BATTERY_VOLTAGE : real = 12.6;
+  MAX_RPM : nat = 12000;
+  TARGET_TILT_RPM : nat = 300;
+  TARGET_YAW_RPM : nat = 300;
+
+--assuming these initial starting conditions are true--
+  STARTING_DISTANCE : nat = 10;
+  STARTING_ALTITUDE : nat = 0;
+  STARTING_VOLTAGE : real = 12.0;
+
+state QuadcopterSystem of
+  throttleJoystickPosition : nat
+  movementJoystickDirection : MovementJoystickDirectionType
+  leftYawButton : bool
+  rightYawButton : bool
+  distanceDisplay : [nat]
+  altitudeDisplay : [nat]
+  batteryPercentageDisplay : [real]
+  LEDvideoDisplay : [bool]  
+  batteryLowWarning : [bool]
+  outOfRangeWarning : [bool]
+  distance : nat
+  altitude : nat
+  batteryVoltage : real
+  videoData : bool       
+  signalLost : bool
+  motors : map nat to nat
+  systemStarted : bool
+
+--system invariant to ensure that states are in range-- 
+inv mk_QuadcopterSystem(tjp, mjd, lftYB, rgtYB,dstD, altD, bpD, LEDd, bloW, 
+                        otOfRng, dst,alt,btV,VidDat,SigLst, mtrs, sysStrtd) ==
+                          motorsRPMsInRange(mtrs) and
+                          throttleJoystickPositionInRange(tjp) and
+                          not dst < 0 and not alt < 0 and not btV < 0
+
+--constructor to set the initial values of variables-- 
+init p == p = mk_QuadcopterSystem(
+  0,
+  <NEUTRAL>,
+  false,
+  false, nil, nil, nil, nil, nil, nil, STARTING_DISTANCE, 
+  STARTING_ALTITUDE, STARTING_VOLTAGE,
+   false, false,
+  {1|->0,2|->0,3|->0,4|->0},
+  false
+)
+end
+
+functions
+--function to check if throttle joystick position is in range-- 
+    throttleJoystickPositionInRange: nat -> bool
+    throttleJoystickPositionInRange(throttleJoystickPosition) ==
+        0 <= throttleJoystickPosition and throttleJoystickPosition <= 100
+;
+
+--function to check if battery voltage is in range-- 
+    batteryVoltageInRange: real -> bool
+    batteryVoltageInRange(batteryVoltage) ==
+        MIN_BATTERY_VOLTAGE <= batteryVoltage and batteryVoltage <= MAX_BATTERY_VOLTAGE
+
+;
+--function to check if distance of Quadcopter from remote is in range-- 
+    distanceInRange: nat -> bool
+    distanceInRange(distance)==
+        (distance >= 0 and distance <=1500)
+;
+      --function to check if motors' RPM is in range--             
+    motorsRPMsInRange: map nat to nat -> bool
+    motorsRPMsInRange(motors) ==
+        forall k in set dom motors & (motors(k) >= 0 and motors(k) <= MAX_RPM);
+
+    calculateThrottleRPM: nat -> nat
+    calculateThrottleRPM(throttleJoystickPosition)==
+    let allowedThrottleRPM : nat = MAX_RPM - TARGET_TILT_RPM in
+        ((allowedThrottleRPM-800) * (throttleJoystickPosition / 100)) + 800
+
+operations
+--operation to get the RPM of a motor-- 
+getRPM: nat ==> nat
+getRPM(idin) ==
+	return motors(idin)
+  
+--operation to set the RPM of a motor--   
+setRPM: nat * nat ==> ()
+setRPM(idin, RPMin) ==
+	motors(idin) := RPMin
+  pre
+   systemStarted = true and motorsRPMsInRange(motors)
+  post 
+   motors(idin) = RPMin;
+  
+--operation to set the RPM of all motors at once-- 
+setAllRPMs: nat ==> ()
+setAllRPMs(RPMin) ==(
+  motors(1):=RPMin;
+  motors(2):=RPMin;
+  motors(3):=RPMin;
+  motors(4):=RPMin)
+   pre
+   systemStarted = true
+  post 
+    forall i in set dom motors & motors(i) = RPMin;
+    
+--operation to initialize or start the system.-- 
+initializeSystem: () ==> ()
+initializeSystem() ==
+  ( 
+  setAllRPMs(800);
+  systemStarted := true;
+  updateState()     
+  )
+  pre
+    throttleJoystickPositionInRange(throttleJoystickPosition) and
+    movementJoystickDirection = <NEUTRAL>
+    and leftYawButton = false and rightYawButton = false and
+    distanceInRange(distance) and altitude = 0 and
+    batteryVoltageInRange(batteryVoltage) and signalLost = false
+    and motors = {1|->0,2|->0,3|->0,4|->0}  and systemStarted = false
+  post
+    forall i in set dom motors & motors(i) = 800 and
+    systemStarted = true;
+
+--operation to transmit all the commands (forward, backward etc) 
+-- from remote to quadcopter through control signal-- 
+transmitControlSignal: () ==> Signal
+transmitControlSignal() ==
+  return <CONTROLSIGNAL>
+  pre
+   systemStarted = true;
+
+--operation to transmit all the sensor values from quadcopter to remote
+  --through telemetry signal-- 
+transmitTelemetrySignal: () ==> Signal
+transmitTelemetrySignal() ==
+  return <TELEMETRYSIGNAL>
+  pre
+   systemStarted = true;
+
+--operation to transmit the video from quadcopter to remote through video signal--
+transmitVideoSignal: () ==> Signal
+transmitVideoSignal() ==
+  return <VIDEOSIGNAL>
+  pre
+   systemStarted = true;
+
+--operation to decode the control signal received from remote to get commands-- 
+decodeControlSignal: <CONTROLSIGNAL> ==> ()
+decodeControlSignal(<CONTROLSIGNAL>) ==
+  skip
+  pre
+   systemStarted = true;
+  
+--operation to decode the telemetry signal from quadcopter to get sensor values --
+decodeTelemetrySignal: <TELEMETRYSIGNAL> ==> ()
+decodeTelemetrySignal(<TELEMETRYSIGNAL>) ==
+  -- Calculate battery percentage based on voltage
+  let calculatedBatteryPercentage : real = floor((((batteryVoltage - MIN_BATTERY_VOLTAGE) ---------------------------------|
+  / (MAX_BATTERY_VOLTAGE - MIN_BATTERY_VOLTAGE)) * 100) * 100 + 0.5)/100 in --for elimination of unnecessary decimal places
+  (
+    distanceDisplay := distance;
+    altitudeDisplay := altitude;
+    batteryPercentageDisplay := calculatedBatteryPercentage;
+
+    -- Set battery low warning based on safe threshold
+    if batteryPercentageDisplay <= MIN_SAFE_BATTERY_PERCENTAGE then
+        batteryLowWarning := true
+    else
+        batteryLowWarning := false;
+
+    -- Set out-of-range warning based on distance threshold
+    if distance > MAX_SAFE_DISTANCE then
+        outOfRangeWarning := true
+    else
+        outOfRangeWarning := false
+  )
+  pre
+   systemStarted = true
+   not distance < 0
+   not altitude < 0;
+   
+
+--operation to decode the signal to get video footage from camera in quadcopter--
+decodeVideoSignal: <VIDEOSIGNAL> ==> ()
+decodeVideoSignal(<VIDEOSIGNAL>) ==
+    LEDvideoDisplay := videoData
+  pre
+   systemStarted = true;
+
+--operation to decode the telemetry signal from quadcopter to get sensor values --
+baseControl: () ==> ()
+baseControl() ==(
+
+  setAllRPMs(calculateThrottleRPM(throttleJoystickPosition));
+            
+  if not movementJoystickDirection = <NEUTRAL> 
+  then(
+    if movementJoystickDirection = <FORWARD> then (
+        setRPM(3, getRPM(3) + TARGET_TILT_RPM);
+        setRPM(4, getRPM(4) + TARGET_TILT_RPM);   
+    )
+    elseif movementJoystickDirection = <BACKWARD> then (
+        setRPM(1, getRPM(1) + TARGET_TILT_RPM);
+        setRPM(2, getRPM(2) + TARGET_TILT_RPM);
+        -- tiltDirection := <BACKWARD>
+    )
+    elseif movementJoystickDirection = <RIGHT> then (
+        setRPM(1, getRPM(1) + TARGET_TILT_RPM);
+        setRPM(4, getRPM(4) + TARGET_TILT_RPM);
+    )
+    elseif movementJoystickDirection = <LEFT> then (
+        setRPM(2, getRPM(2) + TARGET_TILT_RPM);
+        setRPM(3, getRPM(3) + TARGET_TILT_RPM);
+    );  
+    ))
+  pre
+   systemStarted = true;
+
+--operation to control the spin of quadcopter--            
+yawControl: () ==> ()
+yawControl() == (
+    if rightYawButton = true and leftYawButton = false then (
+        setRPM(2, getRPM(2)-TARGET_YAW_RPM);
+        setRPM(4, getRPM(4)-TARGET_YAW_RPM);
+    );
+    if leftYawButton = true and rightYawButton=false  then 
+        (setRPM(1, getRPM(1)-TARGET_YAW_RPM);
+        setRPM(3, getRPM(3)-TARGET_YAW_RPM);
+    );
+  )
+  pre
+   systemStarted = true;   
+
+
+--operation to constantly check the condition of quadcopter and to check 
+--if any command is given. This operation will be called multiple times (atleast 500 times per second)--
+updateState: () ==> ()
+  updateState() ==    
+    if signalLost or batteryVoltage <= MIN_BATTERY_VOLTAGE or batteryVoltage > MAX_BATTERY_VOLTAGE then (
+        setAllRPMs(0);
+        systemStarted := false;
+        videoData := false;
+    )
+    else (
+      videoData := true;
+        baseControl();
+        yawControl();
+        decodeVideoSignal(transmitVideoSignal());
+        decodeTelemetrySignal(transmitTelemetrySignal());
+        decodeControlSignal(transmitControlSignal())
+    )   
+  pre
+    systemStarted = true
+    
+
+
+
