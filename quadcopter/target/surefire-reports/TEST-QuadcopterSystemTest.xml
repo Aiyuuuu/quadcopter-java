@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="QuadcopterSystemTest" time="0.093" tests="14" errors="11" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="QuadcopterSystemTest" time="0.114" tests="14" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\Ayan\AppData\Local\Temp\surefire17634689436019209116\surefirebooter11068314206452084838.jar C:\Users\Ayan\AppData\Local\Temp\surefire17634689436019209116 2024-11-23T23-57-30_709-jvmRun1 surefire5922969486105426063tmp surefire_06379668649768751998tmp"/>
+    <property name="sun.java.command" value="C:\Users\Ayan\AppData\Local\Temp\surefire13792433074815492118\surefirebooter1275001913883612094.jar C:\Users\Ayan\AppData\Local\Temp\surefire13792433074815492118 2024-11-26T02-05-57_738-jvmRun1 surefire5698239012208707031tmp surefire_06848737946131620452tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Ayan\Desktop\FMS\VDM\maven\quadcopter\target\test-classes;C:\Users\Ayan\Desktop\FMS\VDM\maven\quadcopter\target\classes;C:\Users\Ayan\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.0\junit-jupiter-engine-5.9.0.jar;C:\Users\Ayan\.m2\repository\org\junit\platform\junit-platform-engine\1.9.0\junit-platform-engine-1.9.0.jar;C:\Users\Ayan\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Ayan\.m2\repository\org\junit\platform\junit-platform-commons\1.9.0\junit-platform-commons-1.9.0.jar;C:\Users\Ayan\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.0\junit-jupiter-api-5.9.0.jar;C:\Users\Ayan\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Ayan\AppData\Local\Temp\surefire17634689436019209116\surefirebooter11068314206452084838.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Ayan\AppData\Local\Temp\surefire13792433074815492118\surefirebooter1275001913883612094.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.1+11-39"/>
@@ -59,69 +59,22 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testBatteryLowWarning" classname="QuadcopterSystemTest" time="0.043">
-    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
-	at QuadcopterSystemTest.testBatteryLowWarning(test.java:71)
-</error>
-  </testcase>
-  <testcase name="testSignalLost" classname="QuadcopterSystemTest" time="0">
-    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
-	at QuadcopterSystemTest.testSignalLost(test.java:149)
-</error>
-  </testcase>
-  <testcase name="testSetRPMOutOfRange" classname="QuadcopterSystemTest" time="0.001">
-    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
-	at QuadcopterSystemTest.testSetRPMOutOfRange(test.java:55)
-</error>
-  </testcase>
-  <testcase name="testSetAllRPMsOutOfRange" classname="QuadcopterSystemTest" time="0.002">
-    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
-	at QuadcopterSystemTest.testSetAllRPMsOutOfRange(test.java:63)
-</error>
-  </testcase>
-  <testcase name="testBaseMovement" classname="QuadcopterSystemTest" time="0.001">
-    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
-	at QuadcopterSystemTest.testBaseMovement(test.java:119)
-</error>
-  </testcase>
-  <testcase name="testNegativeTelemetryValues" classname="QuadcopterSystemTest" time="0.001">
-    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
-	at QuadcopterSystemTest.testNegativeTelemetryValues(test.java:91)
-</error>
-  </testcase>
-  <testcase name="testInitializeSystemAtAltitude" classname="QuadcopterSystemTest" time="0.005"/>
-  <testcase name="testInitializeSystem" classname="QuadcopterSystemTest" time="0.006">
-    <failure message="Unexpected exception thrown: java.lang.IllegalStateException: System not started" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Unexpected exception thrown: java.lang.IllegalStateException: System not started
-	at QuadcopterSystemTest.testInitializeSystem(test.java:22)
-Caused by: java.lang.IllegalStateException: System not started
-	at QuadcopterSystemTest.lambda$testInitializeSystem$0(test.java:22)
-	at QuadcopterSystemTest.testInitializeSystem(test.java:22)
-</failure>
-  </testcase>
-  <testcase name="testOutOfRangeWarning" classname="QuadcopterSystemTest" time="0.002">
-    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
-	at QuadcopterSystemTest.testOutOfRangeWarning(test.java:81)
-</error>
-  </testcase>
+  <testcase name="testBatteryLowWarning" classname="QuadcopterSystemTest" time="0.041"/>
+  <testcase name="testSignalLost" classname="QuadcopterSystemTest" time="0.003"/>
+  <testcase name="testSetRPMOutOfRange" classname="QuadcopterSystemTest" time="0.003"/>
+  <testcase name="testSetAllRPMsOutOfRange" classname="QuadcopterSystemTest" time="0.002"/>
+  <testcase name="testBaseMovement" classname="QuadcopterSystemTest" time="0.002"/>
+  <testcase name="testNegativeTelemetryValues" classname="QuadcopterSystemTest" time="0.002"/>
+  <testcase name="testInitializeSystemAtAltitude" classname="QuadcopterSystemTest" time="0.001"/>
+  <testcase name="testInitializeSystem" classname="QuadcopterSystemTest" time="0.005"/>
+  <testcase name="testOutOfRangeWarning" classname="QuadcopterSystemTest" time="0.001"/>
   <testcase name="testInitializeSystemAtLowBattery" classname="QuadcopterSystemTest" time="0.001"/>
-  <testcase name="testThrottleControl" classname="QuadcopterSystemTest" time="0.001">
-    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
-	at QuadcopterSystemTest.testThrottleControl(test.java:104)
-</error>
+  <testcase name="testThrottleControl" classname="QuadcopterSystemTest" time="0.001"/>
+  <testcase name="testBatteryDead" classname="QuadcopterSystemTest" time="0.001"/>
+  <testcase name="testYawControl" classname="QuadcopterSystemTest" time="0.014">
+    <failure message="Motor 1 RPM should decrease by TARGET_YAW_RPM for left yaw. ==&gt; expected: &lt;500&gt; but was: &lt;501&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Motor 1 RPM should decrease by TARGET_YAW_RPM for left yaw. ==> expected: <500> but was: <501>
+	at QuadcopterSystemTest.testYawControl(test.java:138)
+]]></failure>
   </testcase>
-  <testcase name="testBatteryDead" classname="QuadcopterSystemTest" time="0.002">
-    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
-	at QuadcopterSystemTest.testBatteryDead(test.java:163)
-</error>
-  </testcase>
-  <testcase name="testYawControl" classname="QuadcopterSystemTest" time="0">
-    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
-	at QuadcopterSystemTest.testYawControl(test.java:134)
-</error>
-  </testcase>
-  <testcase name="testInitializeSystemAlreadyStarted" classname="QuadcopterSystemTest" time="0.002">
-    <error message="System not started" type="java.lang.IllegalStateException">java.lang.IllegalStateException: System not started
-	at QuadcopterSystemTest.testInitializeSystemAlreadyStarted(test.java:31)
-</error>
-  </testcase>
+  <testcase name="testInitializeSystemAlreadyStarted" classname="QuadcopterSystemTest" time="0.002"/>
 </testsuite>
